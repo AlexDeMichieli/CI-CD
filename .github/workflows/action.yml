@@ -26,13 +26,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     # Specify runner + deployment step
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Validate HTML
-      uses: anishathalye/proof-html@v2
-      with:
-        directory: ./
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v2 
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+
+      # Add the additional step for proofreading HTML
+      - name: Proofread HTML
+        uses: anishathalye/proof-html@v2
+        with:
+          directory: ./site
