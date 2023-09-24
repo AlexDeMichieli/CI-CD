@@ -8,8 +8,7 @@ on:
 jobs:
   # Build job
   build:
-      runs-on: ubuntu-latest
-
+    runs-on: ubuntu-latest
 
   # Deploy job
   deploy:
@@ -29,6 +28,12 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2 
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Validate HTML
+      uses: anishathalye/proof-html@v2
+      with:
+        directory: ./
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2 
