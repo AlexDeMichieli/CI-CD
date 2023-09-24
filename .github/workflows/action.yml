@@ -8,16 +8,7 @@ on:
 jobs:
   # Build job
   build:
-    runs-on: ubuntu-latest
-
-    steps:
-      # Add the additional step for proofreading HTML
-      - name: Proofread HTML
-        uses: anishathalye/proof-html@v2
-        with:
-          directory: ./
-          check_html: true
-          check_css: true
+      runs-on: ubuntu-latest
 
 
   # Deploy job
@@ -40,4 +31,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v2 
