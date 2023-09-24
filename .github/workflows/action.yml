@@ -10,6 +10,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    steps:
+      # Add the additional step for proofreading HTML
+      - name: Proofread HTML
+        uses: anishathalye/proof-html@v2
+        with:
+          directory: ./
+
   # Deploy job
   deploy:
     # Add a dependency to the build job
@@ -31,9 +38,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-
-      # Add the additional step for proofreading HTML
-      - name: Proofread HTML
-        uses: anishathalye/proof-html@v2
-        with:
-          directory: ./site
